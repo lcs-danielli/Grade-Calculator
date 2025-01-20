@@ -19,14 +19,15 @@ struct GradeView: View {
     @State var firstMark = ""
     @State var secondMark = ""
     @State var thirdMark = ""
-    
+    @State var feedback = ""
     // Feedback to the user
     //@State var feedback = ""
     var body: some View {
+        
         NavigationStack {
             VStack(spacing: 20) {
                 
-                Text("This app will help you determine the average grade and the letter grade.")
+                Text("This app will help you determine the Average grade and the Letter grade.")
                     .padding(.horizontal)
                     .font(.custom("Cochin", size: 23))
                 
@@ -44,8 +45,41 @@ struct GradeView: View {
                     .textFieldStyle(.roundedBorder)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
+                
+                Text(feedback)
+                    .font(
+                        .custom(
+                            "BradleyHandITCTT-Bold",
+                            size: 24.0,
+                            relativeTo: .title3
+                            )
+                        )
+                
             }
             .navigationTitle("Grading Calculator")
+        }
+    }
+    
+    let A = 90
+    let B = 80
+    let C = 70
+    let D = 60
+    
+        func letterGrading() {
+            guard let markInput = Int(firstMark) else {
+                feedback = "Please provide an integer."
+                return
+            }
+            if markInput > A {
+                feedback = "Congrates, A!"
+            } else if markInput > B {
+                feedback = "Well done, B!"
+            } else if markInput > C {
+                feedback = "Nice, C"
+            } else if markInput > D {
+                feedback = "OK, D!"
+            } else {
+                feedback = "No way..."
         }
     }
 }
