@@ -23,9 +23,33 @@ struct GradeView: View {
     // Feedback to the user
     //@State var feedback = ""
     var body: some View {
-        
+        NavigationStack {
+            VStack(spacing: 20) {
+                
+                Text("This app will help you determine the average grade and the letter grade.")
+                    .padding(.horizontal)
+                    .font(.custom("Cochin", size: 23))
+                
+                TextField("Mark for the first assignment", text: $firstMark)
+                    .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                
+                TextField("Mark for the second assignment", text: $secondMark)
+                    .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                
+                TextField("Mark for the third assignment", text: $thirdMark)
+                    .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+            }
+            .navigationTitle("Grading Calculator")
+        }
     }
 }
+
 #Preview {
     GradeView()
 }
