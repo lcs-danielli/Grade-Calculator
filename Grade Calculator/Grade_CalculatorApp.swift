@@ -11,7 +11,7 @@ import SwiftUI
 struct Grade_CalculatorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GradeView()
         }
     }
 }
