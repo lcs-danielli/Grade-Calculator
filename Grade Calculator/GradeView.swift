@@ -25,11 +25,11 @@ struct GradeView: View {
     var body: some View {
         
         NavigationStack {
-            VStack(spacing: 20) {
+            VStack(spacing: 40) {
                 
                 Text("This app will help you determine the Average grade and the Letter grade.")
                     .padding(.horizontal)
-                    .font(.custom("Cochin", size: 23))
+                    .font(.custom("Cochin-Bold", size: 30))
                 
                 TextField("Mark for the first assignment", text: $firstMark)
                     .textFieldStyle(.roundedBorder)
@@ -54,11 +54,11 @@ struct GradeView: View {
                 Text(feedback)
                     .font(
                         .custom(
-                            "BradleyHandITCTT-Bold",
-                            size: 24.0,
+                            "Cochin",
+                            size: 30,
                             relativeTo: .title3
                         )
-                    )
+                    ).padding(.horizontal)
                 
             }
             .navigationTitle("Grading Calculator")
@@ -99,12 +99,13 @@ struct GradeView: View {
         let grade1 = letter(for: mark1)
         let grade2 = letter(for: mark2)
         let grade3 = letter(for: mark3)
+        let average = Double(mark1 + mark2 + mark3) / 3.0
         
         feedback = """
                     Grades: First assignment: \(grade1)
                     Second assignment: \(grade2)
                     Third assignment: \(grade3)
-                    Assigment avergae: \(average / 3)
+                    Assigment avergae: \(average.formatted(.number.precision(.fractionLength(1))))
                     """
     }
     
