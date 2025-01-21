@@ -46,6 +46,11 @@ struct GradeView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
                 
+                Button("Calculate Grade") {
+                                    letterGrading()
+                                }
+                                .buttonStyle(.borderedProminent)
+                
                 Text(feedback)
                     .font(
                         .custom(
@@ -59,18 +64,20 @@ struct GradeView: View {
             .navigationTitle("Grading Calculator")
         }
     }
-    
+    let High = 100
     let A = 90
     let B = 80
     let C = 70
     let D = 60
-    
+
         func letterGrading() {
             guard let markInput = Int(firstMark) else {
                 feedback = "Please provide an integer."
                 return
             }
-            if markInput > A {
+            if markInput > High {
+                feedback = "The mark provided is not valid."
+            } else if markInput > A {
                 feedback = "Congrates, A!"
             } else if markInput > B {
                 feedback = "Well done, B!"
@@ -80,9 +87,9 @@ struct GradeView: View {
                 feedback = "OK, D!"
             } else {
                 feedback = "No way..."
+            }
         }
     }
-}
 
 #Preview {
     GradeView()
