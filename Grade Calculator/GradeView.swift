@@ -47,9 +47,9 @@ struct GradeView: View {
                     .padding(.horizontal)
                 
                 Button("Calculate Grade") {
-                                    letterGrading()
-                                }
-                                .buttonStyle(.borderedProminent)
+                    letterGrading()
+                }
+                .buttonStyle(.borderedProminent)
                 
                 Text(feedback)
                     .font(
@@ -57,39 +57,52 @@ struct GradeView: View {
                             "BradleyHandITCTT-Bold",
                             size: 24.0,
                             relativeTo: .title3
-                            )
                         )
+                    )
                 
             }
             .navigationTitle("Grading Calculator")
         }
     }
-    let High = 100
-    let A = 90
-    let B = 80
-    let C = 70
-    let D = 60
-
-        func letterGrading() {
-            guard let markInput = Int(firstMark) else {
-                feedback = "Please provide an integer."
-                return
-            }
-            if markInput > High {
-                feedback = "The mark provided is not valid."
-            } else if markInput > A {
-                feedback = "Congrates, A!"
-            } else if markInput > B {
-                feedback = "Well done, B!"
-            } else if markInput > C {
-                feedback = "Nice, C"
-            } else if markInput > D {
-                feedback = "OK, D!"
-            } else {
-                feedback = "No way..."
-            }
+    
+    
+    func letterGrading() {
+        
+        let High = 100
+        let A = 90
+        let B = 80
+        let C = 70
+        let D = 60
+        let Low = 0
+        
+        guard let markInput = Int(firstMark) else {
+            feedback = "Please provide an integer."
+            return
+        }
+        if markInput > High {
+            feedback = "The mark provided is invalid."
+        } else if markInput > A {
+            feedback = "Congrates, A!"
+        } else if markInput > B {
+            feedback = "Well done, B!"
+        } else if markInput > C {
+            feedback = "Nice, C"
+        } else if markInput > D {
+            feedback = "OK, D!"
+        } else if markInput < D {
+            feedback = "Too bad"
+        } else if markInput < Low {
+            feedback = "The mark provided is invalid."
         }
     }
+    
+    func avergaeGrade() {
+        guard Double(firstMark + secondMark + thirdMark) != nil else {
+            return
+        }
+    }
+   
+}
 
 #Preview {
     GradeView()
