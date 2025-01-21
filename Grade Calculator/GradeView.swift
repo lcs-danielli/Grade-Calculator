@@ -64,9 +64,21 @@ struct GradeView: View {
             .navigationTitle("Grading Calculator")
         }
     }
+    //    func letter(for mark: Int) -> String {
+    //        if mark > A {
+    //            return "A"
+    //        } else if mark > B {
+    //            return "B"
+    //        } else if mark > C {
+    //            return "C"
+    //        } else if mark > D {
+    //            return "D"
+    //        } else {
+    //            return "F"
+    //        }
+    //    }
     
-    
-    func letterGrading() {
+    func letter(for mark: Int) -> String {
         
         let High = 100
         let A = 90
@@ -75,35 +87,30 @@ struct GradeView: View {
         let D = 60
         let Low = 0
         
-        guard let markInput = Int(firstMark) else {
-            feedback = "Please provide an integer."
-            return
-        }
-        if markInput > High {
-            feedback = "The mark provided is invalid."
-        } else if markInput > A {
-            feedback = "Congrates, A!"
-        } else if markInput > B {
-            feedback = "Well done, B!"
-        } else if markInput > C {
-            feedback = "Nice, C"
-        } else if markInput > D {
-            feedback = "OK, D!"
-        } else if markInput < D {
-            feedback = "Too bad"
-        } else if markInput < Low {
-            feedback = "The mark provided is invalid."
+        if mark > High {
+            return "Mark provided is too high"
+        } else if mark > A {
+            return "A"
+        } else if mark > B {
+            return "B"
+        } else if mark > C {
+            return "C"
+        } else if mark > D {
+            return "D"
+        } else if mark < Low {
+            return "Mark provided is too high"
+        } else {
+            return "F"
         }
     }
+    
     
     func avergaeGrade() {
         guard Double(firstMark + secondMark + thirdMark) != nil else {
             return
         }
     }
-   
 }
-
 #Preview {
     GradeView()
 }
