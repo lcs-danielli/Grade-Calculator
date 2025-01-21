@@ -100,6 +100,12 @@ struct GradeView: View {
         let grade2 = letter(for: mark2)
         let grade3 = letter(for: mark3)
         
+        feedback = """
+                    Grades: First assignment: \(grade1)
+                    Second assignment: \(grade2)
+                    Third assignment: \(grade3)
+                    Assigment avergae: \(average / 3)
+                    """
     }
     
        
