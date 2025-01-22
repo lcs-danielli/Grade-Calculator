@@ -13,23 +13,21 @@ import SwiftUI
 
 struct GradeView: View {
     
-    // MARK: Stored properties
-    
-    // The two numbers the user must add
     @State var firstMark = ""
     @State var secondMark = ""
     @State var thirdMark = ""
     @State var feedback = ""
-    // Feedback to the user
-    //@State var feedback = ""
+    @State var History: [String] = []
+
     var body: some View {
         
         NavigationStack {
-            VStack(spacing: 40) {
+            VStack(spacing: 35) {
                 
                 Text("This app will help you determine the Average grade and the Letter grade.")
                     .padding(.horizontal)
-                    .font(.custom("Cochin-Bold", size: 30))
+                    .font(.custom("Cochin-Bold", size: 28))
+                    .padding(.vertical)
                 
                 TextField("Mark for the first assignment", text: $firstMark)
                     .textFieldStyle(.roundedBorder)
@@ -51,14 +49,20 @@ struct GradeView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 
-                Text(feedback)
-                    .font(
-                        .custom(
-                            "Cochin",
-                            size: 30,
-                            relativeTo: .title3
-                        )
-                    ).padding(.horizontal)
+                
+                ScrollView {
+                    VStack(spacing: 5) {
+                        Text("Feedback")
+                            .font(.custom("Cochin-Bold", size: 29))
+                        ForEach(History, id: \.self) { feedbackItem in
+                            Text("\(feedbackItem)")
+                                .font(.custom("Cochin",size: 28)).padding(.horizontal)
+                            Divider()
+                        }
+                            
+                    }
+                }
+                
                 
             }
             .navigationTitle("Grading Calculator")
@@ -84,7 +88,7 @@ struct GradeView: View {
         } else if mark > D {
             return "D"
         } else if mark < Low {
-            return "Mark provided is too high"
+            return "Mark provided is too low"
         } else {
             return "F"
         }
@@ -107,6 +111,7 @@ struct GradeView: View {
                     Third assignment: \(grade3)
                     Assigment avergae: \(average.formatted(.number.precision(.fractionLength(1))))
                     """
+        History.append(feedback)
     }
     
        
