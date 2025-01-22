@@ -22,7 +22,7 @@ struct GradeView: View {
     var body: some View {
         
         NavigationStack {
-            VStack(spacing: 35) {
+            VStack(spacing: 25) {
                 
                 Text("This app will help you determine the Average grade and the Letter grade.")
                     .padding(.horizontal)
@@ -49,14 +49,22 @@ struct GradeView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 
+                Text(feedback)
+                    .font(
+                        .custom(
+                            "Cochin",
+                            size: 28,
+                            relativeTo: .title3
+                        )
+                    )
                 
                 ScrollView {
                     VStack(spacing: 5) {
                         Text("Feedback")
-                            .font(.custom("Cochin-Bold", size: 29))
+                            .font(.custom("Cochin-Bold", size: 28))
                         ForEach(History, id: \.self) { feedbackItem in
                             Text("\(feedbackItem)")
-                                .font(.custom("Cochin",size: 28)).padding(.horizontal)
+                                .font(.custom("Cochin",size: 20)).padding(.horizontal)
                             Divider()
                         }
                             
@@ -100,6 +108,34 @@ struct GradeView: View {
             feedback = "Please provide valid integers for all marks."
             return
         }
+        
+        //guard nonsense
+        guard mark1 >= 0 else {
+            feedback = "Make mark 1 a valid number"
+            return
+        }
+        guard mark1 <= 100 else {
+            feedback = "Make mark 1 a valid number"
+            return
+        }
+        guard mark2 >= 0 else {
+            feedback = "Make mark 2 a valid number"
+            return
+        }
+        guard mark2 <= 100 else {
+            feedback = "Make mark 2 a valid number"
+            return
+        }
+        guard mark3 >= 0 else {
+            feedback = "Make mark 3 a valid number"
+            return
+        }
+        guard mark3 <= 100 else {
+            feedback = "Make mark 3 a valid number"
+            return
+        }
+        
+        
         let grade1 = letter(for: mark1)
         let grade2 = letter(for: mark2)
         let grade3 = letter(for: mark3)
