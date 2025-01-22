@@ -5,7 +5,7 @@
 //  Created by 李泽宇 on 2025-01-20.
 //
 //4. Grade Calculator
-//Input: Marks for three assignments (TextFields or Steppers).
+//Input: Marks for0000 three assignments (TextFields or Steppers).
 //Output: Displays the average grade and a letter grade
 //(e.g., A, B, C).
 
@@ -110,27 +110,15 @@ struct GradeView: View {
         }
         
         //guard nonsense
-        guard mark1 >= 0 else {
+        guard mark1 >= 0 && mark1 <= 100 else {
             feedback = "Make mark 1 a valid number"
             return
         }
-        guard mark1 <= 100 else {
-            feedback = "Make mark 1 a valid number"
-            return
-        }
-        guard mark2 >= 0 else {
+        guard mark2 >= 0 && mark2 <= 100 else {
             feedback = "Make mark 2 a valid number"
             return
         }
-        guard mark2 <= 100 else {
-            feedback = "Make mark 2 a valid number"
-            return
-        }
-        guard mark3 >= 0 else {
-            feedback = "Make mark 3 a valid number"
-            return
-        }
-        guard mark3 <= 100 else {
+        guard mark3 >= 0 && mark3 <= 100 else {
             feedback = "Make mark 3 a valid number"
             return
         }
